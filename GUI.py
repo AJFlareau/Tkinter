@@ -36,6 +36,18 @@ def check4dup():
         
 def findsize():
         label1.config(text=listbox1.size())
+        
+def openfileR():
+    print "Open File R"
+    
+def openfileW():
+    f = open("Readme.txt", 'w')
+    names = listbox1.ger(0, END)
+    for i in names:
+        f.write(i+"\n")
+
+    
+    f.close()
 
 
 
@@ -61,15 +73,25 @@ listbox1.bind("<Button-3>", clearlist)
 listbox1.insert(END, "Bob")
 listbox1.insert(END, "John")
 listbox1.insert(END, "Erick")
-
+ 
 findsize()
 
 image = Image.open("ball.jpg")
+image = image.resize((100, 100))
 photo = ImageTk.PhotoImage(image)
 
-labe2 = Label(image=photo)
-labe2.image = photo # keep a reference!
-labe2.grid(row=12, column=0)
+label2 = Label(image=photo)
+label2.image = photo # keep a reference!
+label2.grid(row=7, column=1)
 
+menubar = Menu(root)
+filemenu = Menu(menubar, tearoff=0)
+filemenu.add_command(label="Open", command=openfileR)
+filemenu.add_separator()
+filemenu.add_command(label="Save", command=openfileW)
 
-mainloop() #causes the windows to display on the screen until program closes
+filemenu.add_cascade(label="File", menu=filemenu)
+
+root.config(menu=menubar)
+
+mainloop() #causes the windows to display on thescreen until program closes
