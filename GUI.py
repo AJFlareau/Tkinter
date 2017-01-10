@@ -38,11 +38,16 @@ def findsize():
         label1.config(text=listbox1.size())
         
 def openfileR():
-    print "Open File R"
+   f = open("Readme.txt", "r")
+   name = f.readline()
+   listbix1.insert(END, name)
+   
+   
+   f.close()
     
 def openfileW():
     f = open("Readme.txt", 'w')
-    names = listbox1.ger(0, END)
+    names = listbox1.get(0, END)
     for i in names:
         f.write(i+"\n")
 
@@ -70,9 +75,9 @@ listbox1 = Listbox(root)
 listbox1.grid(row=2, column=0, columnspan=2, sticky=EW, rowspan=10)
 listbox1.bind("<Button-3>", clearlist)
 
-listbox1.insert(END, "Bob")
-listbox1.insert(END, "John")
-listbox1.insert(END, "Erick")
+#listbox1.insert(END, "Bob")
+#listbox1.insert(END, "John")
+#listbox1.insert(END, "Erick")
  
 findsize()
 
