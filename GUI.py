@@ -39,8 +39,8 @@ def findsize():
         
 def openfileR():
    f = open("Readme.txt", "r")
-   name = f.readline()
-   listbix1.insert(END, name)
+   for line in f:
+       print line
    
    
    f.close()
