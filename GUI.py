@@ -76,7 +76,10 @@ entry1.bind("<Return>", addtolist2)
 label1 = Label(root, text="Dont Push the red Button", anchor=W)
 label1.grid(row=0, column=0, sticky=EW, columnspan=2)
 
-listbox1 = Listbox(root)
+scrollbar= Scrollbar(root, orient=VERTICAL)
+listbox1 = Listbox(root, yscrollcommand=scrollbar.set)
+listbox1.config(command=listbox1.yview)
+scrollbar.grid(row=2, column=2, rowspan=10)
 listbox1.grid(row=2, column=0, columnspan=2, sticky=EW, rowspan=10)
 listbox1.bind("<Button-3>", clearlist)
 
