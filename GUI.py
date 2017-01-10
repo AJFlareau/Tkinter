@@ -40,11 +40,11 @@ def findsize():
 def openfileR():
    f = open("Readme.txt", "r")
    for line in f:
-       print line
-   
-   
+       name = line[0:-1]
+       lisbox1.insert(END, name)
    f.close()
-    
+   findsize()
+   
 def openfileW():
     f = open("Readme.txt", 'w')
     names = listbox1.get(0, END)
