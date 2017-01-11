@@ -1,6 +1,8 @@
 from Tkinter import * #gives us access to everything in the Tkinter class
 import tkMessageBox
 from PIL import Image, ImageTk
+from datetime import datetime
+from threading import *
 
 def buttonpress():
     entrytext = entry1.get()
@@ -60,7 +62,17 @@ def openfileW():
     f.close()
 
 
+d = datetime.now()
+y = d.year
+h = d.hour
 
+def generate():
+    while(1):
+        print "Hello"
+
+
+thread1 = Thread(target=generate)
+#thread1.start()
 
 
 root = Tk() #gives us a blank canvas object to work with
@@ -73,13 +85,13 @@ entry1 = Entry(root)
 entry1.grid(row=1, column=0)
 entry1.bind("<Return>", addtolist2)
 
-label1 = Label(root, text="Dont Push the red Button", anchor=W)
-label1.grid(row=0, column=0, sticky=EW, columnspan=2)
+label1 = Label(root, text="Dont Push the red Button", bg="pink", anchor=W)
+label1.grid(row=0, column=0, sticky=EW, columnspan=3)
 
-scrollbar= Scrollbar(root, orient=VERTICAL)
+scrollbar = Scrollbar(root, orient=VERTICAL)
 listbox1 = Listbox(root, yscrollcommand=scrollbar.set)
-listbox1.config(command=listbox1.yview)
-scrollbar.grid(row=2, column=2, rowspan=10)
+scrollbar.config(command=listbox1.yview)
+scrollbar.grid(row=2, column=2, rowspan=10, sticky=NS)
 listbox1.grid(row=2, column=0, columnspan=2, sticky=EW, rowspan=10)
 listbox1.bind("<Button-3>", clearlist)
 
@@ -103,7 +115,7 @@ filemenu.add_command(label="Open", command=openfileR)
 filemenu.add_separator()
 filemenu.add_command(label="Save", command=openfileW)
 
-filemenu.add_cascade(label="File", menu=filemenu)
+menubar.add_cascade(label="File", menu=filemenu)
 
 root.config(menu=menubar)
 
